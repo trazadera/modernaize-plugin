@@ -1,0 +1,27 @@
+{
+  "name": "modernaize",
+  "displayName": "ModernAIze",
+  "version": "0.1.598",
+  "description": "Connect Claude Code to ModernAIze: migrate legacy programs through TIL, enrichment, proposals and generated outputs.",
+  "author": {
+    "name": "Trazadera",
+    "url": "https://trazadera.com"
+  },
+  "license": "Apache-2.0",
+  "userConfig": {
+    "mcp_url": {
+      "type": "string",
+      "title": "ModernAIze MCP URL",
+      "description": "Copy it from ModernAIze → Settings → Access tokens",
+      "required": true,
+      "sensitive": false
+    },
+    "pat": {
+      "type": "string",
+      "title": "ModernAIze access token",
+      "description": "Personal access token from ModernAIze → Settings → Access tokens",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}

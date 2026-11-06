@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "modernaize": {
+      "type": "http",
+      "url": "${user_config.mcp_url}",
+      "headers": { "Authorization": "Bearer ${user_config.pat}" },
+      "timeout": 1800000
+    }
+  }
+}
