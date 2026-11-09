@@ -15,6 +15,12 @@ This is a read-only check. Follow these steps in order.
 2. Otherwise call `list_projects` once. If it fails with an authentication error, give the same
    token message as in step 1.
 3. On success, greet the user and show their projects as a short table with name, source system
-   and status. Then suggest three prompts based on what exists. If there are no projects, suggest
-   "upload this folder as a new project".
+   and tilStatus. Then suggest three prompts based on where the projects stand:
+   - no projects, or tilStatus NONE: "upload this folder as a new project";
+   - PARSED or STALE: "enrich <project>" (leads to `trigger_enrichment`);
+   - ENRICHED or ENRICHED_PARTIAL: "explain what <project> does" (leads to `understand_briefing`)
+     and "propose a new architecture for <project>" (leads to `list_proposal_options`);
+   - "generate code from the latest proposal of <project>" (leads to `list_proposals` and
+     `list_output_options`) for a project the user says already has a proposal;
+   - PARSE_FAILED or ENRICHMENT_FAILED: "why did <project> fail?" (leads to `get_til_status`).
 4. Never call a tool that changes anything.
