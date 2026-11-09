@@ -75,7 +75,8 @@ A proposal needs an ENRICHED (or ENRICHED_PARTIAL) project.
   modelAlias, a name and instructions. Needs EDITOR. This is a paid run: only start it when the
   user asked for it.
 - `get_proposal_status`: the runs of a project, or one run by runId. QUEUED, LAUNCHING and RUNNING
-  are in progress; SUCCEEDED, FAILED and CANCELLED are final. error says why it failed.
+  are in progress; SUCCEEDED, FAILED and CANCELLED are final. PAUSED means an operator stopped it
+  at a save point and may resume it. error says why it failed.
 - `list_proposals`: the proposals and their revisions. Pass a revision version to `create_output`.
   The NAKED entry is the enriched TIL, not a proposal.
 - `cancel_proposal`: stops a running proposal. Needs EDITOR and confirm set to true, only after the
@@ -93,7 +94,8 @@ A proposal needs an ENRICHED (or ENRICHED_PARTIAL) project.
 - `list_outputs`: every output of a project with its status.
 - `get_output_status`: the authoritative status of an output. PENDING and GENERATING are in
   progress; COMPLETED, COMPILE_FAILED, ERROR and ABANDONED are final. worker.error says why a
-  Worker failed; read it when errorMessage is empty.
+  Worker failed; read it when errorMessage is empty. worker.phase PAUSED means an operator stopped
+  the Worker at a save point: the output stays GENERATING until it is resumed.
 - `cancel_output`: stops an output that is still generating. Needs EDITOR and confirm set to true,
   only after the user explicitly agrees.
 - `retry_output`: generates a failed or abandoned output again, as a new output whose id it
