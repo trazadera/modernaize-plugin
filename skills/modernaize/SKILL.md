@@ -94,7 +94,8 @@ A proposal needs an ENRICHED (or ENRICHED_PARTIAL) project.
 - `list_outputs`: every output of a project with its status.
 - `get_output_status`: the authoritative status of an output. PENDING and GENERATING are in
   progress; COMPLETED, COMPILE_FAILED, ERROR and ABANDONED are final. worker.error says why a
-  Worker failed; read it when errorMessage is empty. worker.phase PAUSED means an operator stopped
+  Worker failed; read it when errorMessage is empty. proposalVersion is the proposal revision the
+  output was generated from. worker.phase PAUSED means an operator stopped
   the Worker at a save point: the output stays GENERATING until it is resumed.
 - `cancel_output`: stops an output that is still generating. Needs EDITOR and confirm set to true,
   only after the user explicitly agrees.
@@ -168,7 +169,9 @@ Questions about generated code and its origin:
 - `listProjects`: the generated outputs, each with the source project it came from.
 - `whoIsThisFile`: the constructs and source references behind a generated file or model.
 - `explainDecision`: where a construct sits in the proposal the output was generated from
-  (architecture, layer, rationale).
+  (architecture, layer, rationale). By model name it answers directly when a generated file
+  implements one of the matching constructs; otherwise it returns candidates: call it again with
+  the constructId of the one you want.
 - `querySourceSemantics`: source semantics by construct id or name query.
 
 ## Rules for agents
