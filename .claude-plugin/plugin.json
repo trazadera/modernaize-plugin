@@ -1,7 +1,7 @@
 {
   "name": "modernaize",
   "displayName": "ModernAIze",
-  "version": "0.1.622",
+  "version": "0.1.623",
   "description": "Connect Claude Code to ModernAIze: migrate legacy programs through TIL, enrichment, proposals and generated outputs.",
   "author": {
     "name": "Trazadera",
