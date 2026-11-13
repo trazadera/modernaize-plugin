@@ -69,11 +69,13 @@ version and systemBlueprintId set to that destination. Follow it with `get_outpu
 
 A proposal needs an ENRICHED (or ENRICHED_PARTIAL) project.
 
-- `list_proposal_options`: the architectures (id, name, description) and the model aliases with
-  their level (high or medium) and the default. launchable false means no proposal can start now.
+- `list_proposal_options`: the architectures (id, name, description), the model aliases with
+  their level (high or medium) and the default, and the user's own ARCHITECTURE blueprints
+  (userBlueprints). launchable false means no proposal can start now.
 - `create_proposal`: starts the Proposal Worker with an architectureId, and optionally a
-  modelAlias, a name and instructions. Needs EDITOR. This is a paid run: only start it when the
-  user asked for it.
+  modelAlias, a name, ordered userBlueprintIds (up to 20 of the user's ARCHITECTURE blueprints,
+  the first wins a conflict) and instructions. Needs EDITOR. This is a paid run: only start it when
+  the user asked for it.
 - `get_proposal_status`: the runs of a project, or one run by runId. QUEUED, LAUNCHING and RUNNING
   are in progress; SUCCEEDED, FAILED and CANCELLED are final. PAUSED means an operator stopped it
   at a save point and may resume it. error says why it failed.
@@ -86,10 +88,11 @@ A proposal needs an ENRICHED (or ENRICHED_PARTIAL) project.
 
 - `list_output_options`: the destinations the Output Worker supports (dbt ones with a
   systemBlueprintId, Java ones with a frameworkRealizationId), the target platforms for Java, the
-  user's own blueprints as optional style overrides, and the model aliases with their level.
+  available CONVENTIONS blueprints with appliesTo (DBT, JAVA_SPRING or ANY), and the model aliases
+  with their level.
 - `create_output`: starts the Output Worker on one proposal revision (proposalVersion) and exactly
   one destination: systemBlueprintId (dbt, optional orchestration) or frameworkRealizationId (Java,
-  optional targetPlatformId). Optional userBlueprintId, modelAlias and name. Needs EDITOR. This is a
+  optional targetPlatformId). Optional ordered userBlueprintIds (up to 20), modelAlias and name. Needs EDITOR. This is a
   paid run: only start it when the user asked for it.
 - `list_outputs`: every output of a project with its status.
 - `get_output_status`: the authoritative status of an output. PENDING and GENERATING are in
