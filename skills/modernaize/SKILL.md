@@ -142,7 +142,7 @@ Reading:
 - `til_summary`: precomputed summaries of a project or a scope.
 - `til_search`: substring search over the entity index.
 - `til_find`: search by text, column, dataset read or written, kind or SQL presence.
-- `til_get`: one construct or a path inside the document, with depth and paging controls.
+- `til_get`: one construct (nodeKey), a path inside the document (path), or both; omit both to read the document root, system (a small depth gives an overview). Depth and paging controls.
 - `til_slice`: a scoped slice or raw JSON path of a snapshot.
 - `til_navigate`: one lineage step (callers, dependents, flowsContaining).
 - `til_lineage`: lineage around a node, at construct or field level, upstream or downstream.
