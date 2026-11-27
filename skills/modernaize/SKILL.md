@@ -160,6 +160,18 @@ Editing a native system definition (needs EDITOR; checking needs USER):
 
 - `til_create`: create a new system definition version from a complete TIL document.
 - `til_check`: validate an exact revision, optionally with candidate changes, without writing.
+  The outstanding list is everything the candidate still owes; each source construct and each
+  operation of a source transform is cited by its own pointer, and a citation of a pointer the
+  pinned source does not have is a provenance error. Unresolved flow targets and feeds values
+  with no single candidate come apart as advisories and never count as outstanding.
+  When the revision pins one fraction of a split run, the reply also has a merge section: a
+  preview of how the run will merge that fraction, assuming every other fraction returns its
+  input unchanged. What that merge refuses of the fraction is in the outstanding list with the
+  rest: an owned item its result does not cover, and a construct it returns in versions the merge
+  cannot choose between. A construct the merge drops for its owner's version is listed in the
+  section and does not block. An owned item listed there as a boundary at risk does not block
+  either, but the run fails if another fraction keeps its declaration of that item. The preview
+  cannot see what the other fractions will really return.
 - `til_apply_changes`: apply an ordered batch of changes to an exact revision, creating a new
   revision.
 
